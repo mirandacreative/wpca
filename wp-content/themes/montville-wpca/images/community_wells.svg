@@ -1,0 +1,12 @@
+<svg width="17" height="21" viewBox="0 0 17 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>Shape Copy 3</title>
+	<desc>Created using Figma</desc>
+	<g id="Canvas" transform="translate(199 -865)">
+		<g id="Shape Copy 3">
+			<use xlink:href="#wells" transform="translate(-199 865)" fill="#3DD8AF"/>
+		</g>
+	</g>
+	<defs>
+		<path id="wells" fill-rule="evenodd" d="M 14.5137 6.14448L 8.5 0L 2.48625 6.14448C 0.82875 7.84101 0 10.1031 0 12.2781C 0 14.4531 0.82875 16.7478 2.48625 18.4443C 4.14375 20.1409 6.32187 21 8.5 21C 10.6781 21 12.8562 20.1409 14.5137 18.4443C 16.1712 16.7478 17 14.4531 17 12.2781C 17 10.1031 16.1712 7.84101 14.5137 6.14448L 14.5137 6.14448ZM 2.125 12.6696C 2.13562 10.4946 2.78375 9.11345 3.995 7.88456L 8.5 3.1756L 13.005 7.93893C 14.2162 9.15695 14.8644 10.4946 14.875 12.6696L 2.125 12.6696L 2.125 12.6696Z"/>
+	</defs>
+</svg>

@@ -1,0 +1,62 @@
+
+// Colors
+$white:			#fff;
+$black:			#000;
+$navy:			#212664;
+$blue:			#1993CA;
+$dark_blue:		#1634BB;
+$deep_blue:		#182A7D;
+$mint:			#3DD8AF;
+$green:			#579E0C;
+$yellow:		#FFBC20;
+$orange:		#FE9E19;
+$purple:		#351071;
+$light_purple:	#6510F4;
+
+$colors: (
+	'white': $white,
+	'black': $black,
+	'navy': $navy,
+	'blue': $blue,
+	'dark_blue': $dark_blue,
+	'deep_blue': $deep_blue,
+	'mint': $mint,
+	'green': $green,
+	'yellow': $yellow,
+	'orange': $orange,
+	'purple': $purple,
+	'light_purple': $light_purple
+);
+
+$primary:       $blue;
+$success:       $green;
+$warning:       $yellow;
+$link-color:	#2078CF;
+
+$theme-colors: (
+	'text_color': #373A39,
+	'dark_text_color': #171826
+);
+
+// Grid
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1338px
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1306px
+);
+
+$grid-gutter-width-base:     16px;
+
+// Fonts
+$font: 'Raleway', sans-serif;
+$sub_font: 'Passion One', sans-serif;
+$add_font: 'Bungee', sans-serif;
