@@ -182,8 +182,10 @@ function featured_img_overlay(){?>
 	// 	) );
 	// }
 	// global $colors;
+
+	$overlay = get_field('overlay');
 	genesis_markup( array(
-		'open'    => '<div %s style="background-color: #77777;">',
+		'open'    => '<div %s style="background-color:'.$overlay.';">',
 		'context' => 'hero-overlay',
 	) );
 	genesis_markup( array(
