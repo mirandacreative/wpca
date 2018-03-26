@@ -25,7 +25,7 @@ class Custom_Navigation extends Walker_Nav_Menu {
 		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
 		$classes[] = 'menu-item-' . $item->ID;
 		if (!$depth) {
-			$classes[] = 'col-xl-2 col-lg-4 col-md-4 col-sm-6';
+			$classes[] = 'col-xl-2 col-lg-4 col-md-4 col-sm-12';
 		}
 
 	    /**

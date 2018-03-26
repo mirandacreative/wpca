@@ -43,7 +43,8 @@
 		h4 {
 			padding-left: 27px;
 		}
-		.subtitle {
+		.subtitle,
+		.description {
 			padding-left: 30px;
 		}
 	}
@@ -57,6 +58,7 @@
 @include media-breakpoint-down(lg) {
 	.home {
 		.video-button {
+			bottom: 110px;
 			left: calc((100% - (#{map-get($container-max-widths, lg)} - 30px))/ 2);
 		}
 		.google-map-container {
@@ -75,17 +77,21 @@
 	}
 	.site-header {
 		.header-wrap {
-			padding-bottom: 0;
+			// padding-bottom: 0;
+			padding-bottom: 200px;
 			// min-height: auto;
 			.header-bottom {
-				position: relative;
+				// position: relative;
 				margin-top: 50px;
 				text-align: center;
 				bottom: 0;
+				.nav-secondary {
+					padding-bottom: 20px;
+				}
 				.nav-secondary,
 				.address {
 					float: none;
-					position: relative;
+					// position: relative;
 					width: 100%;
 				}
 			}
@@ -271,8 +277,14 @@
 	.contact-us-section {
 		text-align: center;
 
-		.subtitle {
+		.description {
 			margin-top: 40px;
+		}
+		.subtitle,
+		.description {
+			br {
+				display: none;
+			}
 		}
 		.image {
 			margin: 40px auto 0;
@@ -323,26 +335,96 @@
 		}
 	}
 	.site-header {
+		.main-menu-button {
+			padding-left: 15px;
+			top: 15px;
+			&:before {
+				width: 150px;
+				height: 150px;
+			}
+			&:after {
+				width: 190px;
+				height: 190px;
+			}
+			.icon {
+				left: 15px;
+				top: calc(100% + 5px);
+			}
+		}
 		.header-wrap {
 			.logo-wrap {
-				padding-bottom: 90px;
+				padding-top: 150px;
 				.custom-logo-link {
+					svg {
+						vertical-align: middle;
+						height: 20vw;
+						width: 20vw;
+					}
 					.description {
+						position: relative;
+						display: inline-block;
+						bottom: 0;
 						left: 0;
-						top: 100%;
-						bottom: auto;
-						padding: 20px 0 0 0;
+						vertical-align: middle;
+						// top: 100%;
+						// bottom: auto;
+						// padding: 20px 0 0 0;
+						// width: 100%;
+						// text-align: center;
+					}
+				}
+			}
+			.nav-primary {
+				.menu-primary {
+					> .menu-item {
+						> a {
+							padding-right: 30px;
+							margin: 0;
+							br {
+								display: none;
+							}
+						}
+						.sub-menu-toggle {
+							display: block;
+							visibility: visible;
+							position: absolute;
+							top: 0;
+							right: 0;
+							width: 30px;
+							color: #fff;
+							background-color: transparent;
+							border: 0;
+							outline: none;
+							transition: all .4s ease-out;
+							&.activated {
+								transform: rotate(180deg);
+							}
+						}
+						.sub-menu {
+							margin-top: 15px;
+							display: none;
+						}
+					}
+					.menu-item {
+						position: relative;
 						width: 100%;
-						text-align: center;
+						text-align: left;
 					}
 				}
 			}
 			.header-bottom {
+				padding-bottom: 0;
 				.nav-secondary {
 					.menu-secondary {
 						.menu-item {
+							font-size: 1rem;
 							margin: 0 10px !important;
 						}
+					}
+				}
+				.address {
+					p {
+						font-size: 1rem;
 					}
 				}
 			}
@@ -472,23 +554,7 @@
 	.site-header {
 		.header-wrap {
 			.logo-wrap {
-				padding-top: 130px;
-			}
-		}
-		.main-menu-button {
-			padding-left: 15px;
-			top: 15px;
-			&:before {
-				width: 150px;
-				height: 150px;
-			}
-			&:after {
-				width: 190px;
-				height: 190px;
-			}
-			.icon {
-				left: 15px;
-				top: calc(100% + 5px);
+				// padding-top: 50px;
 			}
 		}
 	}

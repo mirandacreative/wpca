@@ -6,6 +6,46 @@
 remove_action( 'genesis_before_footer', 'genesis_footer_widget_areas' );
 remove_action( 'genesis_footer', 'genesis_do_footer' );
 
+add_action('genesis_before_footer', 'contact_us', 20);
+function contact_us() { ?>
+	<?php $contact_us = get_field('contact_us', 'option'); ?>
+	<div class="contact-us-section">
+		<div class="content">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 col-md-12">
+						<?php if ($contact_us['title']): ?>
+							<h4><?php echo $contact_us['title']; ?></h4>
+						<?php endif ?>
+						<?php if ($contact_us['subtitle']): ?>
+							<div class="subtitle"><?php echo $contact_us['subtitle']; ?></div>
+						<?php endif ?>
+						<?php if ($contact_us['description']): ?>
+							<div class="description"><?php echo $contact_us['description']; ?></div>
+						<?php endif ?>
+					</div>
+					<?php if ($contact_us['image']): ?>
+						<div class="col-lg-6 col-md-12">
+							<div class="image">
+								<img src="<?php echo $contact_us['image']['sizes']['medium_large']; ?>" alt="<?php echo $contact_us['image']['alt']; ?>">
+							</div>
+						</div>
+					<?php endif ?>
+				</div>
+				<div class="row">
+					<div class="col">
+						<?php
+						$form_object = $contact_us['form'];
+						gravity_form_enqueue_scripts($form_object['id'], true);
+						gravity_form($form_object['id'], false, false, false, '', true, 1);
+						?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<?php }
+
 add_action('genesis_footer', 'do_custom_footer', 10);
 function do_custom_footer() { ?>
 	<div class="container">
@@ -30,44 +70,7 @@ function do_custom_footer() { ?>
 				<div class="copyright">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?></div>
 			</div>
 			<div class="col-md-6 text-md-right text-center">
-				<div class="studio"><!-- <a href="http://mirandacreative.com/"> -->Miranda Creative<!-- </a> --></div>
-			</div>
-		</div>
-	</div>
-<?php }
-
-add_action('genesis_before_footer', 'contact_us', 20);
-function contact_us() { ?>
-	<?php $contact_us = get_field('contact_us', 'option'); ?>
-	<div class="contact-us-section">
-		<div class="content">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-6 col-md-12">
-						<?php if ($contact_us['title']): ?>
-							<h4><?php echo $contact_us['title']; ?></h4>
-						<?php endif ?>
-						<?php if ($contact_us['subtitle']): ?>
-							<div class="subtitle"><?php echo $contact_us['subtitle']; ?></div>
-						<?php endif ?>
-					</div>
-					<?php if ($contact_us['image']): ?>
-						<div class="col-lg-6 col-md-12">
-							<div class="image">
-								<img src="<?php echo $contact_us['image']['sizes']['medium_large']; ?>" alt="<?php echo $contact_us['image']['alt']; ?>">
-							</div>
-						</div>
-					<?php endif ?>
-				</div>
-				<div class="row">
-					<div class="col">
-						<?php 
-						$form_object = $contact_us['form'];
-						gravity_form_enqueue_scripts($form_object['id'], true);
-						gravity_form($form_object['id'], false, false, false, '', true, 1); 
-						?>
-					</div>
-				</div>
+				<a href="http://mirandacreative.com/" target="_blank" class="studio">Miranda Creative</a>
 			</div>
 		</div>
 	</div>
