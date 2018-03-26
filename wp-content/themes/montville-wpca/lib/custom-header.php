@@ -183,7 +183,7 @@ function featured_img_overlay(){?>
 	// }
 	// global $colors;
 	genesis_markup( array(
-		'open'    => '<div %s style="background-color: #77777;">',
+		'open'    => '<div %s style="background-color: #000;">',
 		'context' => 'hero-overlay',
 	) );
 	genesis_markup( array(

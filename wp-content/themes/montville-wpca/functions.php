@@ -85,8 +85,9 @@ function genesis_sample_enqueue_scripts_styles() {
 
 	$folder = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? 'source' : 'min';
 	wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css?family=Bungee|Passion+One|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i', array(), CHILD_THEME_VERSION );
-	wp_enqueue_style( 'genesis-sample-fonts', '//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700', array(), CHILD_THEME_VERSION );
+	// wp_enqueue_style( 'genesis-sample-fonts', '//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700', array(), CHILD_THEME_VERSION );
 	wp_enqueue_style( 'dashicons' );
+	wp_enqueue_style( 'fancybox', get_stylesheet_directory_uri() . "/css/lib/jquery.fancybox.min.css", array(), '3.2.10' );
 	wp_enqueue_style( 'custom', get_stylesheet_directory_uri() . "/css/{$folder}/custom.css", array(), CHILD_THEME_VERSION );
 
 	wp_enqueue_script( 'genesis-sample-responsive-menu', get_stylesheet_directory_uri() . "/js/{$folder}/responsive-menus.js", array( 'jquery' ), CHILD_THEME_VERSION, true );
@@ -95,11 +96,11 @@ function genesis_sample_enqueue_scripts_styles() {
 	wp_enqueue_script( 'yt-player-api', 'https://www.youtube.com/player_api', array(), false, true );
 
 	wp_enqueue_script( 'bootstrap', get_stylesheet_directory_uri() . "/node_modules/bootstrap/dist/js/bootstrap.min.js", array( 'jquery' ), CHILD_THEME_VERSION, true );
+	wp_enqueue_script( 'fancybox', get_stylesheet_directory_uri() . "/js/lib/jquery.fancybox.min.js", array( 'jquery' ), '3.2.10', true );
 	wp_enqueue_script( 'matchHeight', get_stylesheet_directory_uri() . "/js/lib/jquery.matchHeight.min.js", array( 'jquery' ), CHILD_THEME_VERSION, true );
 	wp_enqueue_script( 'slick', get_stylesheet_directory_uri() . "/js/lib/slick.min.js", array( 'jquery' ), CHILD_THEME_VERSION, true );
 	wp_enqueue_script( 'google.maps.api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAs19C89zcw7bQ12hJEKgtPGK9Q8iuLkQ4&libraries=places&v=3.exp', null, null, true );
-	wp_enqueue_script( 'userwayconfig', get_stylesheet_directory_uri() . '/js/userwayconfig.js');
-	wp_enqueue_script( 'userway', 'https://cdn.userway.org/widget.js');
+
 	wp_localize_script(
 		'genesis-sample-responsive-menu',
 		'genesis_responsive_menu',
@@ -207,6 +208,45 @@ function show_custom_logo() {
 	echo apply_filters( 'get_custom_logo', $html );
 }
 
+// Google map module
+function custom_google_map(){
+	if(get_field('show_map_section_after_header', get_queried_object_id())){
+		$filter_options = get_categories(['taxonomy' => 'filter_options']); ?>
+		<div class="google-map-container">
+			<div class="container">
+				<div class="search">
+					<input type="text" placeholder="" id="map_serach">
+					<label for="map_serach" class="placeholder"><?php _e('Enter an <span>Address</span> to get details', 'wpca'); ?></label>
+				</div>
+				<div class="controls">
+					<ul class="types">
+						<li><?php display_svg(get_stylesheet_directory_uri().'/images/sewer.svg'); ?><?php _e('Sewer', 'wpca'); ?></li>
+						<li><?php display_svg(get_stylesheet_directory_uri().'/images/water.svg'); ?><?php _e('Water', 'wpca'); ?></li>
+						<li><?php display_svg(get_stylesheet_directory_uri().'/images/community_wells.svg'); ?><?php _e('Community Wells', 'wpca'); ?></li>
+					</ul>
+					<span class="filters-title"><?php _e('Filter Options', 'wpca'); ?></span>
+					<?php if(!empty($filter_options)){ ?>
+						<ul class="filters">
+							<?php foreach($filter_options as $key => $option){ ?>
+								<li class="filter" data-id="<?php echo $option->slug; ?>"><?php display_svg(get_field('pin_icon', $option)); ?><?php echo $option->name; ?></li>
+							<?php } ?>
+						</ul>
+					<?php } ?>
+				</div>
+				<div class="acf-map">
+					<?php
+					$map = get_field('map');
+					if(!empty($map)){ ?>
+						<div class="marker" data-lat="<?php echo $map['lat']; ?>" data-lng="<?php echo $map['lng']; ?>"></div>
+					<?php }else{ ?>
+						<div class="marker"></div>
+					<?php } ?>
+				</div>
+			</div>
+		</div>
+	<?php } ?>
+<?php }
+add_action('genesis_after_header', 'custom_google_map', 15);
 
 // Customize Login Screen
 function wordpress_login_styling() {
@@ -298,7 +338,6 @@ function custom_content(){
 		) );
 		foreach($modules as $key => $module){
 			$module['module_key'] = $key;
-			// var_dump($module);
 			show_template('module-'.$module['acf_fc_layout'], $module, 'template-parts');
 		}
 		genesis_markup( array(
@@ -358,7 +397,7 @@ function localize_js() {
 	$args = array(
 		'admin_ajax'   => admin_url( 'admin-ajax.php' ),
 	);
-	if(is_front_page()){
+	if(is_page()){
 		$pins = new WP_Query(array(
 			'post_type' => array('sewer', 'water', 'community_wells')
 		));

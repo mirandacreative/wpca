@@ -210,11 +210,17 @@
 		// $('.video-button').on('click', function(){
 		// 	$(this).toggleClass('playing');
 		// });
+		$('.ginput_container_select select').on('change', function(){
+			console.log($(this).val());
+			if($(this).val()){
+				$(this).addClass('selected');
+			}else{
+				$(this).removeClass('selected');
+			}
+		});
 		$('.acf-map').each(function(){
-
 			// create map
 			map = new_map( $(this) );
-
 		});
 		$('.google-map-container').on('click', '.filter:not(.active)', function(){
 			$(this).addClass('active').siblings('.filter').removeClass('active');

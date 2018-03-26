@@ -16,7 +16,9 @@
 			<?php if(!empty($gallery)){
 				foreach($gallery as $key => $image){ ?>
 					<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-						<img src="<?php echo $image['url']; ?>" class="img-thumbnail" alt="<?php echo $image['alt']; ?>">
+						<a href="<?php echo $image['url']; ?>" data-fancybox="gallery-<?php echo $module_key; ?>" data-options='{"loop" : "true"}'>
+							<img src="<?php echo $image['sizes']['medium']; ?>" class="img-thumbnail" alt="<?php echo $image['alt']; ?>">
+						</a>
 					</div>
 				<?php }
 			} ?>
