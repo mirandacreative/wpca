@@ -397,9 +397,23 @@ function localize_js() {
 	$args = array(
 		'admin_ajax'   => admin_url( 'admin-ajax.php' ),
 	);
+
+	$post_types = array();
+			if(is_page('sewermap')){
+				$post_types[] = 'sewer';
+			} else if(is_page('watermap')){
+				$post_types[]= 'water';
+				$post_types[]= 'community_wells';
+			} else {
+				$post_types[]= 'water';
+				$post_types[]= 'community_wells';
+				$post_types[]= 'sewer';
+			}
+
 	if(is_page()){
 		$pins = new WP_Query(array(
-			'post_type' => array('sewer', 'water', 'community_wells')
+
+			'post_type' => $post_types
 		));
 		if($pins->have_posts()){
 			$args['markers'] = array();
