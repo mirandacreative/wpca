@@ -451,3 +451,14 @@ genesis_unregister_layout( 'sidebar-sidebar-content' );
 
 //* Remove sidebar/content/sidebar layout
 genesis_unregister_layout( 'sidebar-content-sidebar' );
+
+
+function alertin(){
+	$alertswitch = get_field('alert_switch', 'option');
+	if($alertswitch == true){
+		get_template_part('templates/alert');
+	}
+
+}
+
+add_action('genesis_before_footer', 'alertin');
