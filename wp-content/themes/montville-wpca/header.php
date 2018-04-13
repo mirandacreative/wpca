@@ -27,6 +27,19 @@ do_action( 'genesis_title' );
 do_action( 'genesis_meta' );
 wp_head(); // We need this for plugins.
 ?>
+<!-- if it is not the home page make the header image have a smaller height -->
+<?php if ( !is_front_page()) { ?>
+
+<style>
+body .site-header .header-wrap {
+    min-height: 433px;
+    position: relative;
+    padding-bottom: 100px;
+    z-index: 10;
+}
+</style>
+
+<?php } ?>
 </head>
 <?php
 genesis_markup( array(
