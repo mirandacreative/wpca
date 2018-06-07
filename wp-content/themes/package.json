@@ -1,14 +1,14 @@
 {
 	"name": "montville-wpca",
 	"devDependencies": {
-		"gulp": "latest",
+		"bootstrap": "latest",
 		"browser-sync": "latest",
-		"gulp-uglify": "latest",
-		"gulp-sass": "latest",
+		"gulp": "^3.9.1",
 		"gulp-concat": "latest",
-		"gulp-sourcemaps": "latest",
-		"pump": "latest",
 		"gulp-rename": "latest",
-		"bootstrap": "latest"
+		"gulp-sass": "latest",
+		"gulp-sourcemaps": "latest",
+		"gulp-uglify": "latest",
+		"pump": "latest"
 	}
 }

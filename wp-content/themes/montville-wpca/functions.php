@@ -214,34 +214,7 @@ function custom_google_map(){
 		$filter_options = get_categories(['taxonomy' => 'filter_options']); ?>
 		<div class="google-map-container">
 			<div class="container">
-				<div class="search">
-					<input type="text" placeholder="" id="map_serach">
-					<label for="map_serach" class="placeholder"><?php _e('Enter an <span>Address</span> to get details', 'wpca'); ?></label>
-				</div>
-				<div class="controls">
-					<ul class="types">
-						<li><?php display_svg(get_stylesheet_directory_uri().'/images/sewer.svg'); ?><?php _e('Sewer', 'wpca'); ?></li>
-						<li><?php display_svg(get_stylesheet_directory_uri().'/images/water.svg'); ?><?php _e('Water', 'wpca'); ?></li>
-						<li><?php display_svg(get_stylesheet_directory_uri().'/images/community_wells.svg'); ?><?php _e('Community Wells', 'wpca'); ?></li>
-					</ul>
-					<span class="filters-title"><?php _e('Filter Options', 'wpca'); ?></span>
-					<?php if(!empty($filter_options)){ ?>
-						<ul class="filters">
-							<?php foreach($filter_options as $key => $option){ ?>
-								<li class="filter" data-id="<?php echo $option->slug; ?>"><?php display_svg(get_field('pin_icon', $option)); ?><?php echo $option->name; ?></li>
-							<?php } ?>
-						</ul>
-					<?php } ?>
-				</div>
-				<div class="acf-map">
-					<?php
-					$map = get_field('map');
-					if(!empty($map)){ ?>
-						<div class="marker" data-lat="<?php echo $map['lat']; ?>" data-lng="<?php echo $map['lng']; ?>"></div>
-					<?php }else{ ?>
-						<div class="marker"></div>
-					<?php } ?>
-				</div>
+				<?php echo do_shortcode( '[gmw_global_map form="1"]' ); ?>
 			</div>
 		</div>
 	<?php } ?>
